@@ -75,18 +75,17 @@ function playAGame(numberOfRounds) {
     return `With ${numberOfRounds} rounds played game is a draw with ${playerWin} rounds won by you and ${computerWin} rounds won by the computer!`;
 }
 
-//GetNumberOfRounds player wants to play
-function getNumberOfRounds() {
-  let numberOfRounds = Number(
-    prompt("Choose how many rounds you want to play: ", 3)
-  );
-  if (isNaN(numberOfRounds)) {
-    numberOfRounds = prompt(
-      "You need to write a NUMBER of rounds you want to play: ",
-      3
-    );
-  } else return numberOfRounds;
+//Start the game
+let userInputCondition = true;
+while (userInputCondition) {
+  let numberOfRounds = prompt("Choose how many rounds you want to play: ", 3);
+  if (numberOfRounds === undefined || numberOfRounds === null) {
+    alert("Game canceled!");
+    userInputCondition = false;
+  } else if (isNaN(Number(numberOfRounds))) {
+    alert("You need to write a NUMBER of rounds you want to play: ");
+  } else {
+    alert(playAGame(Number(numberOfRounds)));
+    userInputCondition = false;
+  }
 }
-
-//start the game
-alert(playAGame(getNumberOfRounds()));
