@@ -11,27 +11,17 @@ const roundResultComputer = document.querySelector(`#computerCountText`);
 const playerChoiceText = document.querySelector(`#playerChoice p`);
 const computerChoiceText = document.querySelector(`#computerChoice p`);
 
-//creating buttons for choosing what to play
+//creating buttons for choosing what to play and calling playAGame function in it
 
-const playerButtonOne = document.querySelector(`#rock`);
-playerButtonOne.addEventListener(`click`, function (e) {
-  playerChoice = e.target.textContent;
-
-  playAGame();
-});
-
-const playerButtonTwo = document.querySelector(`#paper`);
-playerButtonTwo.addEventListener(`click`, function (e) {
-  playerChoice = e.target.textContent;
-
-  playAGame();
-});
-
-const playerButtonThree = document.querySelector(`#scissors`);
-playerButtonThree.addEventListener(`click`, function (e) {
-  playerChoice = e.target.textContent;
-
-  playAGame();
+const playerButton = Array.from(
+  document.querySelectorAll(`#playerButtons button`)
+);
+console.log(playerButton);
+playerButton.forEach((button) => {
+  button.addEventListener(`click`, function (e) {
+    playerChoice = e.target.textContent;
+    playAGame();
+  });
 });
 
 //function to check number of wins and to playARound
