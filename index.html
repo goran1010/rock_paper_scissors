@@ -4,41 +4,41 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!--  <script src="./main.js" defer></script> -->
-    <link rel="stylesheet" href="./test.css" />
+    <script src="./main.js" defer></script>
+    <link rel="stylesheet" href="./styles.css" />
     <title>Document</title>
   </head>
   <body>
     <div id="container">
       <div id="newGame"><button id="startNewGame">Start New Game!</button></div>
       <div id="choice">
-        <div id="playeChoice"><p>Choose Rock, Paper or Scissors</p></div>
+        <div id="playerChoice"><p>Choose Rock, Paper or Scissors</p></div>
         <div id="roundResult"><p>VS</p></div>
         <div id="computerChoice"><p>Computer will choose after you</p></div>
       </div>
       <div id="main">
         <div class="buttons" id="playerButtons">
-          <button id="playerButtonRock">ROCK</button>
-          <button id="playerButtonPaper">PAPER</button>
-          <button id="playerButtonScissors">SCISSORS</button>
+          <button id="rock">ROCK</button>
+          <button id="paper">PAPER</button>
+          <button id="scissors">SCISSORS</button>
         </div>
         <div id="resultCount">
           <div id="whoWonRound"><p>No rounds played yet</p></div>
           <div id="numberOfWins">
             <div id="playerCount">
               <p>Rounds player won:</p>
-              <p>0</p>
+              <p id="playerCountText">0</p>
             </div>
             <div id="computerCount">
               <p>Rounds computer won:</p>
-              <p>0</p>
+              <p id="computerCountText">0</p>
             </div>
           </div>
         </div>
         <div class="buttons" id="computerButtons">
-          <button id="computerButtonRock">ROCK</button>
-          <button id="computerButtonPaper">PAPER</button>
-          <button id="computerButtonScissors">SCISSORS</button>
+          <button>ROCK</button>
+          <button>PAPER</button>
+          <button>SCISSORS</button>
         </div>
       </div>
       <h2 id="gameResult">First to win 5 Rounds, wins the Game!</h2>

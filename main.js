@@ -1,117 +1,117 @@
-//Start the game
 let playerWin = 0;
 let computerWin = 0;
-let noWinner = 0;
-let condition = true;
+let computerChoice = "";
 
-while (condition) {
-  let numberOfRounds = prompt("Choose how many rounds you want to play: ", 3);
-  if (numberOfRounds === undefined || numberOfRounds === null) {
-    alert("Game canceled!");
-    condition = false;
-  } else if (isNaN(Number(numberOfRounds))) {
-    alert("You need to write a NUMBER of rounds you want to play: ");
-  } else {
-    alert(playAGame(Number(numberOfRounds)));
-    condition = false;
+const startNewGame = document.querySelector(`#startNewGame`);
+startNewGame.addEventListener(`click`, resetGame);
+
+const gameResultText = document.querySelector(`#gameResult`);
+const roundResultPlayer = document.querySelector(`#playerCountText`);
+const roundResultComputer = document.querySelector(`#computerCountText`);
+const playerChoiceText = document.querySelector(`#playerChoice p`);
+const computerChoiceText = document.querySelector(`#computerChoice p`);
+
+//creating buttons for choosing what to play
+
+const playerButtonOne = document.querySelector(`#rock`);
+playerButtonOne.addEventListener(`click`, function (e) {
+  playerChoice = e.target.textContent;
+
+  playAGame();
+});
+
+const playerButtonTwo = document.querySelector(`#paper`);
+playerButtonTwo.addEventListener(`click`, function (e) {
+  playerChoice = e.target.textContent;
+
+  playAGame();
+});
+
+const playerButtonThree = document.querySelector(`#scissors`);
+playerButtonThree.addEventListener(`click`, function (e) {
+  playerChoice = e.target.textContent;
+
+  playAGame();
+});
+
+//function to check number of wins and to playARound
+function playAGame() {
+  if (
+    (playerWin === 0 && computerWin === 0) ||
+    playerWin === 5 ||
+    computerWin === 5
+  ) {
+    resetGame();
+  }
+  playARound();
+
+  playerChoiceText.textContent = `You chose: ${playerChoice}`;
+
+  computerChoiceText.textContent = `Computer chose: ${computerChoice}`;
+
+  if (playerWin === 5) {
+    gameResultText.textContent = `You won!`;
+  } else if (computerWin === 5) {
+    gameResultText.textContent = `Computer won!`;
   }
 }
 
-//function getComputerChoice to get a random choice for computer
+//function to reset the game
+function resetGame() {
+  playerWin = 0;
+  computerWin = 0;
+  gameResultText.textContent = `First to win 5 Rounds, wins the Game!`;
+  roundResultPlayer.textContent = 0;
+  roundResultComputer.textContent = 0;
+  playerChoiceText.textContent = `Choose Rock, Paper or Scissors`;
+  computerChoiceText.textContent = `Computer will choose after you`;
+}
+
+//function to playARound to compare Player vs AI choice
+function playARound() {
+  getComputerChoice();
+
+  if (playerChoice === computerChoice) {
+    return;
+  } else {
+    if (playerChoice === "ROCK") {
+      if (computerChoice === "SCISSORS") {
+        playerWin++;
+        roundResultPlayer.textContent = `${playerWin}`;
+      } else {
+        computerWin++;
+        roundResultComputer.textContent = `${computerWin}`;
+      }
+    } else if (playerChoice === "PAPER") {
+      if (computerChoice === "ROCK") {
+        playerWin++;
+        roundResultPlayer.textContent = `${playerWin}`;
+      } else {
+        computerWin++;
+        roundResultComputer.textContent = `${computerWin}`;
+      }
+    } else if (playerChoice === "SCISSORS") {
+      if (computerChoice === "PAPER") {
+        playerWin++;
+        roundResultPlayer.textContent = `${playerWin}`;
+      } else {
+        computerWin++;
+        roundResultComputer.textContent = `${computerWin}`;
+      }
+    }
+  }
+}
+
+//function getComputerChoice to get a random choice for computer - FIND A BETTER WAY!
 function getComputerChoice() {
   let computer = Math.random() * 3;
   if (computer >= 0 && computer < 1) {
-    console.log(computer);
-    return "rock";
+    computerChoice = "ROCK";
   }
   if (computer >= 1 && computer < 2) {
-    console.log(computer);
-    return "paper";
+    computerChoice = "PAPER";
   }
   if (computer >= 2 && computer <= 3) {
-    console.log(computer);
-    return "scissors";
+    computerChoice = "SCISSORS";
   }
-}
-
-//function to getUserChoice with some conditions
-function getUserChoice() {
-  condition = true;
-  while (condition) {
-    let userChoice = prompt(
-      "Choose between 'rock','paper'and 'scissors': ",
-      "rock"
-    );
-    if (userChoice === undefined || userChoice === null) {
-      condition = false;
-    } else if (
-      !(
-        userChoice.toLowerCase() === "rock" ||
-        userChoice.toLowerCase() === "paper" ||
-        userChoice.toLowerCase() === "scissors"
-      )
-    ) {
-      alert(
-        `You wrote ${userChoice}, but you need to write rock, paper or scissors`
-      );
-    } else {
-      condition = false;
-      return userChoice;
-    }
-  }
-}
-
-//function to playARound which creates a user prompt and makes it lowerCase and is compared vs AI
-function playARound() {
-  let userChoice = getUserChoice();
-  let computerChoice = getComputerChoice();
-  if (userChoice === undefined) {
-    alert("You chose to lose the round!");
-    computerWin++;
-  } else {
-    alert(
-      `You chose ${userChoice.toLowerCase()} and computer chose ${computerChoice}`
-    );
-    if (userChoice.toLowerCase() === computerChoice) {
-      alert("It's a draw !");
-      noWinner++;
-    } else if (userChoice.toLowerCase() === "rock") {
-      if (computerChoice === "scissors") {
-        playerWin++;
-        alert("You win the round!");
-      } else {
-        computerWin++;
-        alert("You lost the round!");
-      }
-    } else if (userChoice.toLowerCase() === "paper") {
-      if (computerChoice === "rock") {
-        playerWin++;
-        alert("You win the round!");
-      } else {
-        computerWin++;
-        alert("You lost the round!");
-      }
-    } else if (userChoice.toLowerCase() === "scissors") {
-      if (computerChoice === "paper") {
-        playerWin++;
-        alert("You win the round!");
-      } else {
-        computerWin++;
-        alert("You lost the round!");
-      }
-    }
-  }
-}
-
-//function to playAGame where player vs computer play a certain number of playARound games
-function playAGame(numberOfRounds) {
-  for (i = 0; i < numberOfRounds; i++) {
-    playARound();
-  }
-  if (playerWin > computerWin)
-    return `With ${numberOfRounds} rounds played you WON THE GAME with ${playerWin} rounds won and ${computerWin} rounds lost, with ${noWinner} draw rounds!`;
-  else if (computerWin > playerWin)
-    return `With ${numberOfRounds} rounds played you LOST THE GAME with ${computerWin} rounds lost and ${playerWin} rounds won, with ${noWinner} draw rounds!`;
-  else
-    return `With ${numberOfRounds} rounds played GAME IS A DRAW with ${playerWin} rounds won by you and ${computerWin} rounds won by the computer, with ${noWinner} draw rounds!`;
 }
