@@ -6,6 +6,7 @@ const startNewGame = document.querySelector(`#startNewGame`);
 startNewGame.addEventListener(`click`, resetGame);
 
 const gameResultText = document.querySelector(`#gameResult`);
+const roundResult = document.querySelector(`#whoWonRound p`);
 const roundResultPlayer = document.querySelector(`#playerCountText`);
 const roundResultComputer = document.querySelector(`#computerCountText`);
 const playerChoiceText = document.querySelector(`#playerChoice p`);
@@ -62,30 +63,37 @@ function playARound() {
   getComputerChoice();
 
   if (playerChoice === computerChoice) {
+    roundResult.textContent = "Round is a draw !";
     return;
   } else {
     if (playerChoice === "ROCK") {
       if (computerChoice === "SCISSORS") {
         playerWin++;
+        roundResult.textContent = "Nice, you won the round !";
         roundResultPlayer.textContent = `${playerWin}`;
       } else {
         computerWin++;
+        roundResult.textContent = "Sorry, computer won the round !";
         roundResultComputer.textContent = `${computerWin}`;
       }
     } else if (playerChoice === "PAPER") {
       if (computerChoice === "ROCK") {
         playerWin++;
+        roundResult.textContent = "Nice, you won the round !";
         roundResultPlayer.textContent = `${playerWin}`;
       } else {
         computerWin++;
+        roundResult.textContent = "Sorry, computer won the round !";
         roundResultComputer.textContent = `${computerWin}`;
       }
     } else if (playerChoice === "SCISSORS") {
       if (computerChoice === "PAPER") {
         playerWin++;
+        roundResult.textContent = "Nice, you won the round !";
         roundResultPlayer.textContent = `${playerWin}`;
       } else {
         computerWin++;
+        roundResult.textContent = "Sorry, computer won the round !";
         roundResultComputer.textContent = `${computerWin}`;
       }
     }
