@@ -4,8 +4,44 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="./main.js"></script>
+    <!--  <script src="./main.js" defer></script> -->
+    <link rel="stylesheet" href="./test.css" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <div id="container">
+      <div id="newGame"><button id="startNewGame">Start New Game!</button></div>
+      <div id="choice">
+        <div id="playeChoice"><p>You chose *SOMETHING*</p></div>
+        <div id="roundResult"><p>VS</p></div>
+        <div id="computerChoice"><p>Computer chose *SOMETHING*</p></div>
+      </div>
+      <div id="main">
+        <div class="buttons" id="playerButtons">
+          <button id="playerButtonRock">ROCK</button>
+          <button id="playerButtonPaper">PAPER</button>
+          <button id="playerButtonScissors">SCISSORS</button>
+        </div>
+        <div id="resultCount">
+          <div id="whoWonRound"><p>*SOMEONE* wins the round!</p></div>
+          <div id="numberOfWins">
+            <div id="playerCount">
+              <p>Rounds player won:</p>
+              <p>3</p>
+            </div>
+            <div id="computerCount">
+              <p>Rounds computer won:</p>
+              <p>1</p>
+            </div>
+          </div>
+        </div>
+        <div class="buttons" id="computerButtons">
+          <button id="computerButtonRock">ROCK</button>
+          <button id="computerButtonPaper">PAPER</button>
+          <button id="computerButtonScissors">SCISSORS</button>
+        </div>
+      </div>
+      <h2 id="gameResult">*SOMEONE* WON THE GAME!</h2>
+    </div>
+  </body>
 </html>
