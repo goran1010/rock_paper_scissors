@@ -2,6 +2,7 @@ let playerWin = 0;
 let computerWin = 0;
 let computerChoice = "";
 let choice;
+let tempChoice;
 
 const startNewGame = document.querySelector(`#startNewGame`);
 startNewGame.addEventListener(`click`, resetGame);
@@ -18,7 +19,7 @@ const computerChoiceText = document.querySelector(`#computerChoice p`);
 const playerButton = Array.from(
   document.querySelectorAll(`#playerButtons button`)
 );
-console.log(playerButton);
+
 playerButton.forEach((button) => {
   button.addEventListener(`click`, function (e) {
     playerChoice = e.target.textContent;
@@ -106,7 +107,11 @@ function playARound() {
 // get random from 0 to 2,round it up with floor and set it up as index of the array I sent in
 
 function random(numbers) {
-  return numbers[Math.floor(Math.random() * 2)];
+  tempChoice = numbers[Math.floor(Math.random() * numbers.length)];
+  while (tempChoice === numbers[3]) {
+    tempChoice = numbers[Math.floor(Math.random() * numbers.length)];
+  }
+  return tempChoice;
 }
 
 function getComputerChoice() {
