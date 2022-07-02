@@ -105,11 +105,7 @@ function playARound() {
 // get random from 0 to 2,round it up with floor and set it up as index of the array I sent in
 
 function random(numbers) {
-  tempChoice = numbers[Math.floor(Math.random() * numbers.length)];
-  while (tempChoice === numbers[3]) {
-    tempChoice = numbers[Math.floor(Math.random() * numbers.length)];
-  }
-  return tempChoice;
+  return numbers[Math.floor(Math.random() * numbers.length)];
 }
 
 function getComputerChoice() {
