@@ -21,14 +21,12 @@ const playerButton = Array.from(
 );
 
 playerButton.forEach((button) => {
-  button.addEventListener(`click`, function (e) {
-    playerChoice = e.target.textContent;
-    playAGame();
-  });
+  button.addEventListener(`click`, playAGame);
 });
 
 //function to check number of wins and to playARound
-function playAGame() {
+function playAGame(e) {
+  playerChoice = e.target.textContent;
   if (
     (playerWin === 0 && computerWin === 0) ||
     playerWin === 5 ||
