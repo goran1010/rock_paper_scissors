@@ -1,6 +1,7 @@
 let playerWin = 0;
 let computerWin = 0;
 let computerChoice = "";
+let choice;
 
 const startNewGame = document.querySelector(`#startNewGame`);
 startNewGame.addEventListener(`click`, resetGame);
@@ -100,16 +101,23 @@ function playARound() {
   }
 }
 
-//function getComputerChoice to get a random choice for computer - FIND A BETTER WAY!
+//function getComputerChoice to get a random choice for computer
+
+// get random from 0 to 2,round it up with floor and set it up as index of the array I sent in
+
+function random(numbers) {
+  return numbers[Math.floor(Math.random() * 2)];
+}
+
 function getComputerChoice() {
-  let computer = Math.random() * 3;
-  if (computer >= 0 && computer < 1) {
+  choice = random([1, 2, 3]);
+  if (choice === 1) {
     computerChoice = "ROCK";
   }
-  if (computer >= 1 && computer < 2) {
+  if (choice === 2) {
     computerChoice = "PAPER";
   }
-  if (computer >= 2 && computer <= 3) {
+  if (choice === 3) {
     computerChoice = "SCISSORS";
   }
 }
